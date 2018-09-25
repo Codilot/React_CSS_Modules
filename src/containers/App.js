@@ -92,13 +92,6 @@ class App extends Component {
         </button>
         
         {persons}
-        <form>
-          <br />
-          <textarea rows="4" cols="50" value="">
-            Type your text here
-          </textarea>
-        </form>
-
 
       </div>
     );
