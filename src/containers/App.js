@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Dashboard from '../components/Dashboard/Dashboard';
-import WithClass from '../hoc/withClass';
+import WithClass from '../hoc/WithClass';
+import withOtherClass from '../hoc/withOtherClass';
 
 class App extends PureComponent {
 
@@ -95,7 +96,7 @@ class App extends PureComponent {
     }
 
     return (
-      <div className={ classes.App }>
+      <Fragment>
       <button onClick={ () => { this.setState({showPersons: true }) } }>Show Persons</button>
         <Dashboard
           persons={this.state.persons}
@@ -104,10 +105,10 @@ class App extends PureComponent {
           appTitle={this.props.title}
         />
         {persons}
-      </div>
+      </Fragment>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default withOtherClass(App, classes.App);

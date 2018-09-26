@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 
 import classes from './Person.css';
-import WithClass from '../../../hoc/withClass'
+import WithClass from '../../../hoc/WithClass';
+
 
 class Person extends PureComponent {
 
