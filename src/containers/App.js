@@ -83,7 +83,7 @@ class App extends PureComponent {
 
     if (this.state.showPersons) {
       persons = (
-        <WithClass>
+        <WithClass classes={classes.App}>
           <Persons
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
