@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 
 import classes from './Person.css';
-import WithClass from '../../../hoc/WithClass';
+
+import withOtherClass from '../../../hoc/withOtherClass';
 
 
 class Person extends PureComponent {
@@ -41,11 +42,11 @@ class Person extends PureComponent {
 
     render() {
         return (
-            <WithClass classes={classes.Person}>
+            <Fragment>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </WithClass>
+            </Fragment>
         );
 
         // return (
@@ -59,4 +60,4 @@ class Person extends PureComponent {
     };
 }
 
-export default Person;
+export default withOtherClass(Person, classes.Person);
