@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Dashboard from '../components/Dashboard/Dashboard';
 
-class App extends Component {
+class App extends PureComponent {
 
   constructor(props) {
     super(props);
-    console.log('[App.js] Inside Contructor', props);
+    console.log('[App.js] Inside Constructor', props);
     this.state = {
       persons: [
         { id: 'asfa1', name: 'Max', age: 28 },
@@ -19,20 +19,35 @@ class App extends Component {
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log('[App.js] Inside componentWillmount');
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log('[App.js] Inside componentDidmount');
   }
 
- 
 
-  nameChangedHandler = ( event, id ) => {
-    const personIndex = this.state.persons.findIndex( p => {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[App.js] UPDATE Inside shouldComponentUpdate', nextProps, nextState);
+  //   return nextState.persons !== this.state.persons ||
+  //   nextState.showPersons !== this.state.showPersons;
+  // }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[App.js] UPDATE Inside componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] UPDATE Inside componentDidUpdate');
+  }
+
+
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
-    } );
+    });
 
     const person = {
       ...this.state.persons[personIndex]
@@ -45,19 +60,19 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( { persons: persons } );
+    this.setState({ persons: persons });
   }
 
-  deletePersonHandler = ( personIndex ) => {
+  deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-    persons.splice( personIndex, 1 );
-    this.setState( { persons: persons } );
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState( { showPersons: !doesShow } );
+    this.setState({ showPersons: !doesShow });
   }
 
   render() {
@@ -75,18 +90,19 @@ class App extends Component {
           />
         </div>
       );
-     
+
     }
 
     return (
-      <div className={classes.App}>
-        <Dashboard 
+      <div className={ classes.App }>
+      <button onClick={ () => { this.setState({showPersons: true }) } }>Show Persons</button>
+        <Dashboard
           persons={this.state.persons}
           toggle={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
           appTitle={this.props.title}
         />
-        {persons}       
+        {persons}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
