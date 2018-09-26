@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Dashboard from '../components/Dashboard/Dashboard';
+import WithClass from '../hoc/withClass';
 
 class App extends PureComponent {
 
@@ -82,13 +83,13 @@ class App extends PureComponent {
 
     if (this.state.showPersons) {
       persons = (
-        <div>
+        <WithClass>
           <Persons
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler}
           />
-        </div>
+        </WithClass>
       );
 
     }
