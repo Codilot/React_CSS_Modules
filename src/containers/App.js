@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
+import Dashboard from '../components/Dashboard/Dashboard';
 
 class App extends Component {
   state = {
@@ -45,14 +46,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
 
     let persons = null;
 
@@ -66,33 +59,17 @@ class App extends Component {
           />
         </div>
       );
-
-      style.backgroundColor = 'red';
-    }
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); // classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
+     
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-
- 
-
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </button>
-        
-        {persons}
-
+        <Dashboard 
+          persons={this.state.persons}
+          toggle={this.togglePersonsHandler}
+          showPersons={this.state.showPersons}
+        />
+        {persons}       
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
