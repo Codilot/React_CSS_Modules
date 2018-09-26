@@ -19,7 +19,7 @@ const dashboard = (props) => {
 
     return (
         <div className={classes.Dashboard}>
-            <h1>Hi, I'm a React App</h1>
+            <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>My persons dashboard</p>
             <button
                 className={btnClass}
