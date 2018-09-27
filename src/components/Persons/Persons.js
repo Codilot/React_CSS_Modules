@@ -9,7 +9,9 @@ const persons = (props) => {
         name={person.name}
         age={person.age}
         key={person.id}
-        changed={(event) => props.changed(event, person.id)} />
+        changed={(event) => props.changed(event, person.id)}
+        position={index}
+        />
     })
   )
 };
