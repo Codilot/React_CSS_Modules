@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
-
+import PropTypes from 'prop-types';
 import classes from './Person.css';
-
 import withOtherClass from '../../../hoc/withOtherClass';
 
 
@@ -58,6 +57,13 @@ class Person extends PureComponent {
         // );
 
     };
+}
+
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
 }
 
 export default withOtherClass(Person, classes.Person);
